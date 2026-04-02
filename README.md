@@ -1,8 +1,8 @@
 # TP5_Kerdoncuff_Schems_Calixte_Annie — Cybersécurité Android IoT
 
-**Auteur :** CodeD-Roger
+**Auteur :** Kerdoncuff Schems & Calixte Annie
 **Date :** 02 avril 2026
-**Cours :** Cybersécurité IoT — Jour 2 — TP5
+**Cours :** Cybersécurité IoT TP5
 
 ## Description
 
