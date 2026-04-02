@@ -1,0 +1,16 @@
+# APK (trop lourd pour GitHub)
+*.apk
+
+# Frida-server binaire
+frida-server/
+
+# Dossier décompilé JADX (trop lourd)
+injured_out/
+
+# Repo source cloné
+InjuredAndroid/
+
+# Clés et credentials
+*.key
+*.pem
+*.keystore

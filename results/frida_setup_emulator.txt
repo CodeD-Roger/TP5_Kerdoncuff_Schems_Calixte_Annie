@@ -1,0 +1,35 @@
+=== SETUP FRIDA — ANDROID STUDIO ===
+Date : jeu. 02 avril 2026 14:24:41 UTC
+
+── Prérequis ─────────────────────────────────────────────────
+Android Studio + AVD : Pixel 4 API 30 (x86)
+Google Play désactivé pour accès root
+
+── Étapes ────────────────────────────────────────────────────
+1. Démarrer l'émulateur
+   emulator -avd Pixel_4_API_30 &
+
+2. Installer l'APK
+   adb install /home/user/IoT/formation-Jour2/android-analysis/InjuredAndroid.apk
+
+3. Pousser frida-server
+   adb push /home/user/IoT/formation-Jour2/android-analysis/frida-server/frida-server /data/local/tmp/frida-server
+   adb shell 'chmod 755 /data/local/tmp/frida-server'
+   adb shell '/data/local/tmp/frida-server &'
+
+4. Vérifier
+   frida-ps -U | grep injuredandroid
+
+── Scripts disponibles ───────────────────────────────────────
+/home/user/IoT/formation-Jour2/android-analysis/frida-scripts/hook_flag.js         Hook submitFlag
+/home/user/IoT/formation-Jour2/android-analysis/frida-scripts/dump_prefs.js        Dump SharedPreferences
+/home/user/IoT/formation-Jour2/android-analysis/frida-scripts/bypass_root.js       Bypass root detection
+/home/user/IoT/formation-Jour2/android-analysis/frida-scripts/bypass_ssl.js        Bypass SSL pinning (verifyChain + OkHttp3)
+/home/user/IoT/formation-Jour2/android-analysis/frida-scripts/list_activities.js   Liste activités exportées
+
+── Commandes Frida ───────────────────────────────────────────
+frida -U -l /home/user/IoT/formation-Jour2/android-analysis/frida-scripts/hook_flag.js -f b3nac.injuredandroid --no-pause
+frida -U -l /home/user/IoT/formation-Jour2/android-analysis/frida-scripts/bypass_root.js -f b3nac.injuredandroid --no-pause
+frida -U -l /home/user/IoT/formation-Jour2/android-analysis/frida-scripts/bypass_ssl.js -f b3nac.injuredandroid --no-pause
+
+Voir aussi : /home/user/IoT/formation-Jour2/android-analysis/results/docker_emulator.txt pour l'alternative Docker

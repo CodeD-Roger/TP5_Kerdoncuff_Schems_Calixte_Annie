@@ -1,0 +1,28 @@
+=== ÉMULATEUR ANDROID VIA DOCKER ===
+Alternative à Android Studio — accessible via navigateur
+
+── Commande de lancement ─────────────────────────────────────
+docker run -d \
+  -p 6080:6080 \
+  -p 5555:5555 \
+  -e EMULATOR_DEVICE="Samsung Galaxy S10" \
+  --privileged \
+  budtmo/docker-android:emulator_11.0
+
+── Accès ─────────────────────────────────────────────────────
+Interface web : http://localhost:6080
+ADB           : adb connect localhost:5555
+
+── Après connexion ADB ───────────────────────────────────────
+adb connect localhost:5555
+adb devices
+adb install /home/user/IoT/formation-Jour2/android-analysis/InjuredAndroid.apk
+
+── Pousser Frida-server ──────────────────────────────────────
+adb -s localhost:5555 push /home/user/IoT/formation-Jour2/android-analysis/frida-server/frida-server /data/local/tmp/frida-server
+adb -s localhost:5555 shell 'chmod 755 /data/local/tmp/frida-server'
+adb -s localhost:5555 shell '/data/local/tmp/frida-server &'
+
+── Frida via ADB réseau ──────────────────────────────────────
+frida -H localhost:27042 -l /home/user/IoT/formation-Jour2/android-analysis/frida-scripts/hook_flag.js \
+  -f b3nac.injuredandroid --no-pause

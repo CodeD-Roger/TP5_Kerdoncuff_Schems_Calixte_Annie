@@ -1,0 +1,26 @@
+=== GUIDE OBJECTION ===
+Connexion : objection -g b3nac.injuredandroid explore
+
+── Bypass ──────────────────────────────────────────────────
+android root disable
+android sslpinning disable
+
+── Exploration ─────────────────────────────────────────────
+android hooking list activities
+android hooking list services
+file ls /data/data/b3nac.injuredandroid/
+file ls /data/data/b3nac.injuredandroid/shared_prefs/
+android preferences get
+
+── Lancement direct d'activités (bypass auth) ──────────────
+android intent launch_activity b3nac.injuredandroid.FlagOneActivity
+android intent launch_activity b3nac.injuredandroid.FlagEightLogInActivity
+
+── Hooking ─────────────────────────────────────────────────
+android hooking watch class b3nac.injuredandroid.FlagOneActivity
+android hooking watch class_method b3nac.injuredandroid.FlagOneActivity.submitFlag --dump-args --dump-return
+android hooking list classes | grep injuredandroid
+
+── Mémoire ─────────────────────────────────────────────────
+memory list modules
+memory dump all /tmp/dump.bin
