@@ -1,4 +1,4 @@
-# TP5_Kerdoncuff_Schems_Calixte_Annie — Cybersécurité Android IoT
+# TP5_Kerdoncuff_Schems — Cybersécurité Android IoT
 
 **Auteur :** Kerdoncuff Schems & Calixte Annie
 **Date :** 02 avril 2026
